@@ -1,0 +1,59 @@
+#2 =========================================================
+# File Name   : sonarqube-code-analysis.yaml
+# Purpose     : Static code analysis and quality gate enforcement
+# Description : Performs SonarQube analysis and validates
+#               code quality before proceeding in CI
+# =========================================================
+
+pipeline {
+    agent any
+
+    tools {
+        jdk 'jdk24'
+        nodejs 'node24'
+    }
+
+    environment {
+        SCANNER_HOME = tool 'sonar-scanner'
+    }
+
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Checkout from Git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/githubWithGHANA/devsecops-netflix.git'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonar-server') {
+                    sh '''
+                    $SCANNER_HOME/bin/sonar-scanner \
+                    -Dsonar.projectName=netflix \
+                    -Dsonar.projectKey=netflix
+                    '''
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                }
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+    }
+}

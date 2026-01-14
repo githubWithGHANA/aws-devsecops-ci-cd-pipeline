@@ -1,0 +1,57 @@
+# 1=========================================================
+# File Name   : terraform-ekscluster.yaml
+# Purpose     : Provision AWS EKS infrastructure using Terraform
+# Description : This pipeline initializes, validates, plans,
+#               and applies Terraform code for EKS cluster setup
+# CREATE A THIS PIPELINE WITH PARAMETERS- action (apply/destroy)
+# =========================================================
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout from Git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/githubWithGHANA/devsecops-netflix.git'
+            }
+        }
+
+        stage('Terraform version') {
+            steps {
+                sh 'terraform --version'
+            }
+        }
+
+        stage('Terraform init') {
+            steps {
+                dir('EKS_TERRAFORM') {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform validate') {
+            steps {
+                dir('EKS_TERRAFORM') {
+                    sh 'terraform validate'
+                }
+            }
+        }
+
+        stage('Terraform plan') {
+            steps {
+                dir('EKS_TERRAFORM') {
+                    sh 'terraform plan'
+                }
+            }
+        }
+
+        stage('Terraform apply/destroy') {
+            steps {
+                dir('EKS_TERRAFORM') {
+                    sh 'terraform ${action} --auto-approve'
+                }
+            }
+        }
+    }
+}
