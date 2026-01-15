@@ -1,95 +1,233 @@
-<div align="center">
-  <a href="http://netflix-clone-with-tmdb-using-react-mui.vercel.app/">
-    <img src="./public/assets/netflix-logo.png" alt="Logo" width="100" height="32">
-  </a>
-
-  <h3 align="center">Netflix Clone</h3>
-
-  <p align="center">
-    <a href="https://netflix-clone-react-typescript.vercel.app/">View Demo</a>
-    ·
-    <a href="https://github.com/crazy-man22/netflix-clone-react-typescript/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/crazy-man22/netflix-clone-react-typescript/issues">Request Feature</a>
-  </p>
+<div align="center"> 
+  
+# AWS DevSecOps CI/CD Pipeline with EKS, Jenkins & Kubernetes
+![Terraform](https://img.shields.io/badge/Terraform-IaC-blueviolet?style=flat-square)
+![Jenkins](https://img.shields.io/badge/Jenkins-CI/CD-red?style=flat-square)
+![SonarQube](https://img.shields.io/badge/SonarQube-Quality%20Gate-blue?style=flat-square)
+![Docker](https://img.shields.io/badge/Docker-Container-blue?style=flat-square)
+![Trivy](https://img.shields.io/badge/Trivy-Security%20Scan-green?style=flat-square)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Deployment-lightblue?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/githubWithGHANA/aws-devsecops-ci-cd-pipeline?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/githubWithGHANA/aws-devsecops-ci-cd-pipeline?style=flat-square)
 </div>
 
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#prerequests">Prerequests</a>
-    </li>
-    <li>
-      <a href="#which-features-this-project-deals-with">Which features this project deals with</a>
-    </li>
-    <li><a href="#third-party-libraries-used-except-for-react-and-rtk">Third Party libraries used except for React and RTK</a></li>
-    <li>
-      <a href="#contact">Contact</a>
-    </li>
-  </ol>
-</details>
+---
+# AWS DevSecOps CI/CD Pipeline with EKS, Jenkins & Kubernetes
 
-<br />
+## 📌 Project Overview
 
-<div align="center">
-  <img src="./public/assets/home-page.png" alt="Logo" width="100%" height="100%">
-  <p align="center">Home Page</p>
-  <img src="./public/assets/mini-portal.png" alt="Logo" width="100%" height="100%">
-  <p align="center">Mini Portal</p>
-  <img src="./public/assets/detail-modal.png" alt="Logo" width="100%" height="100%">
-  <p align="center">Detail Modal</p>
-  <img src="./public/assets/grid-genre.png" alt="Logo" width="100%" height="100%">
-  <p align="center">Grid Genre Page</p>
-  <img src="./public/assets/watch.png" alt="Logo" width="100%" height="100%">
-  <p align="center">Watch Page with customer contol bar</p>
-</div>
+This project demonstrates an **end-to-end DevSecOps CI/CD pipeline** for deploying a containerized **Netflix TMDB-like application** on **AWS EKS**, integrating **security, quality, monitoring, and automation** best practices.
 
-## Prerequests
+The pipeline provisions infrastructure using **Terraform**, builds and scans Docker images, performs **static code analysis**, deploys to **Kubernetes (EKS)**, and enables **monitoring and alerting** using **Prometheus, Node Exporter, and Grafana**.
 
-- Create an account if you don't have on [TMDB](https://www.themoviedb.org/).
-  Because I use its free API to consume movie/tv data.
-- And then follow the [documentation](https://developers.themoviedb.org/3/getting-started/introduction) to create API Key
-- Finally, if you use v3 of TMDB API, create a file named `.env`, and copy and paste the content of `.env.example`.
-  And then paste the API Key you just created.
+---
 
-## Which features this project deal with
+## 🏗️ Architecture
 
-- How to create and use [Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
-- How to use [Context](https://reactjs.org/docs/context.html) and its provider
-- How to use lazy and Suspense for [Code-Splitting](https://reactjs.org/docs/code-splitting.html)
-- How to use a new [lazy](https://reactrouter.com/en/main/route/lazy) feature of react-router to reduce bundle size.
-- How to use data [loader](https://reactrouter.com/en/main/route/loader) of react-router, and how to use redux dispatch in the loader to fetch data before rendering component.
-- How to use [Portal](https://reactjs.org/docs/portals.html)
-- How to use [Fowarding Refs](https://reactjs.org/docs/forwarding-refs.html) to make components reusuable
-- How to create and use [HOC](https://reactjs.org/docs/higher-order-components.html)
-- How to customize default theme of [MUI](https://mui.com/)
-- How to use [RTK](https://redux-toolkit.js.org/introduction/getting-started)
-- How to use [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
-- How to customize default classname of [MUI](https://mui.com/material-ui/experimental-api/classname-generator)
-- Infinite Scrolling(using [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API))
-- How to make awesome carousel using [slick-carousel](https://react-slick.neostack.com)
+![Architecture](screenshots/architecture.png)
 
-## Third Party libraries used except for React and RTK
+**Core Components:**
+- AWS EKS (Kubernetes Cluster & Node Groups)
+- Terraform (Infrastructure as Code)
+- Jenkins (CI/CD Orchestration)
+- Docker & Docker Hub
+- SonarQube (Code Quality & Security)
+- Kubernetes (Deployment & Service)
+- Prometheus & Node Exporter (Monitoring)
+- Grafana (Visualization)
+---
 
-- [react-router-dom@v6.9](https://reactrouter.com/en/main)
-- [MUI(Material UI)](https://mui.com/)
-- [framer-motion](https://www.framer.com/docs/)
-- [video.js](https://videojs.com)
-- [react-slick](https://react-slick.neostack.com/)
+## 📂 Repository Structure
 
-## Install with Docker
-
-```sh
-docker build --build-arg TMDB_V3_API_KEY=your_api_key_here -t netflix-clone .
-
-docker run --name netflix-clone-website --rm -d -p 80:80 netflix-clone
+```text
+aws-devsecops-ci-cd-pipeline/
+|
+├───Dockerfile
+├───index.html
+├───package.json
+├───README.md
+├───tsconfig.json
+├───tsconfig.node.json
+├───vercel.json
+├───vite.config.ts
+├───yarn.lock
+├───EKS_TERRAFORM/
+├───jenkins-pipeline's/
+├───Kubernetes/
+├───public
+│   └───assets
+├───screenshots
+└───src
+    ├───components
+    │   ├───animate/
+    │   ├───layouts/
+    ├───constant
+    ├───hoc
+    ├───hooks
+    ├───layouts
+    ├───lib
+    ├───pages
+    ├───providers
+    ├───routes
+    ├───store
+    │   └───slices/
+    ├───theme
+    ├───types
+    └───utils
 ```
+# ⚠️ Mandatory Prerequisites (READ CAREFULLY)
 
-## Todo
+Before executing this project, ensure all the following requirements are met.
 
-- Make the animation of video card portal more similar to Netflix.
-- Improve performance. I am using `context` and `provider` but all components subscribed to the context's value are re-rendered. These re-renders happen even if the part of the value is not used in render of the component. there are [several ways](https://blog.axlight.com/posts/4-options-to-prevent-extra-rerenders-with-react-context/) to prevent the re-renders from these behaviours. In addition to them, there may be several performance issues.
-- Replace bundler([Vite](https://vitejs.dev/guide)) with [Turbopack](https://turbo.build/pack/docs/why-turbopack). Turbopack is introduced in Next.js conf recently. It's very fast but it's nor ready to use right now. it just support Next.js, and they plan to support all others as soon as possible. so if it's ready to use, replace [Vite](https://vitejs.dev/guide) with [Turbopack](https://turbo.build/pack/docs/why-turbopack).
-- Add accessibilities for better UX.
-- Add Tests.
+## ● System Requirements
+- **Operating System**: Ubuntu (commands are Ubuntu-specific)
+- **Host Machine Size**: Minimum `t2.large` or equivalent (recommended)
+- **Resources**: Sufficient disk space & memory for Docker, Jenkins, and SonarQube
+
+## ● AWS & EKS Requirements
+- Ensure AWS credentials are configured properly
+- Verify Availability Zones before creating the EKS cluster
+- Confirm instance type availability in your selected AWS region
+- Default VPC & public subnets must exist (used by EKS)
+
+## ● Application Configuration
+- Obtain a valid TMDB API Key
+- Replace the API key in Jenkins pipeline or environment variables
+
+## 🔹 Docker & Jenkins Credentials
+
+- Add Docker Hub **username & password** in Jenkins Credentials
+- Create a `secret.txt` file from your local kubeconfig:
+  ```bash
+  cat ~/.kube/config > secret.txt
+  ```
+## 🧩 Required Jenkins Plugins
+
+Ensure the following Jenkins plugins are installed:
+
+- Pipeline  
+- Git  
+- GitHub Integration  
+- Docker Pipeline  
+- Kubernetes CLI  
+- SonarQube Scanner  
+- Email Extension Plugin  
+- Credentials Binding  
+- Blue Ocean *(optional)*
+
+📌 Configure plugins under:  
+`Manage Jenkins → Plugins → Available / Installed`
+
+---
+
+## 🔧 Jenkins Global Configuration
+
+### Tools Configuration
+- Configure **JDK**
+- Configure **NodeJS**
+- Configure **SonarQube Scanner**
+- Configure **Docker**
+
+### SonarQube
+- Add SonarQube server under:  
+  `Manage Jenkins → System → SonarQube Servers`
+
+### Email Notifications
+- Configure SMTP email under:  
+  `Manage Jenkins → System`
+- Enable email alerts for pipeline **failures** & **success**
+
+---
+
+## 📊 Monitoring Setup (Prometheus & Node Exporter)
+
+- Deploy **Node Exporter** on worker nodes  
+- Update Prometheus configuration files with correct scrape targets  
+- Verify Prometheus UI and metrics collection  
+- Import dashboards into Grafana  
+
+📌 Detailed steps are available in the `docs/monitoring.md` file.
+
+---
+
+## 🛠️ Common Issue Fix (IMPORTANT)
+
+**Docker Login / SonarQube Error Fix**
+
+If you face Docker login or SonarQube startup issues:
+
+```bash
+systemctl edit docker.service -> Add this in file
+[Service]
+Environment=DOCKER_MIN_API_VERSION=1.24
+```
+Then run:
+```bash
+systemctl daemon-reexec
+systemctl restart docker
+docker start sonar
+```
+## 🚀 CI/CD Pipeline Flow
+
+### 🔁 Terraform Pipeline Parameterization
+
+The Terraform EKS pipeline (`terraform-ekscluster.yaml`) is **parameterized** to control the infrastructure lifecycle using a Jenkins input parameter.
+
+#### Supported Actions
+- `apply`   → Create or update EKS infrastructure
+- `destroy` → Safely tear down all AWS resources
+
+This approach enables:
+- Controlled infrastructure provisioning
+- Safe cleanup to avoid unnecessary AWS charges
+- Reusable pipeline for multiple executions
+
+> ⚠️ Always verify the selected action before triggering the pipeline.
+
+### 📦 Pipeline Execution Stages
+
+1. Terraform provisions or destroys EKS infrastructure
+2. Application build & Docker image creation
+3. Security scanning & code analysis (SonarQube)
+4. Docker image pushed to Docker Hub
+5. Kubernetes deployment to EKS
+6. Monitoring & alerting enabled
+7. Email notifications sent
+
+
+---
+
+## 🧹 Cleanup (VERY IMPORTANT)
+
+To avoid unnecessary AWS charges:
+```bash
+terraform destroy  => rerun terraform-ekscluster.yaml and choose [destroy] as action
+```
+- Delete Jenkins resources if hosted on EC2  
+- Remove Docker images if no longer required  
+- Clean up Kubernetes resources
+---
+## 🎯 Key Learnings & Highlights
+
+- End-to-end **DevSecOps automation**  
+- **Infrastructure as Code** with Terraform  
+- Secure **CI/CD pipeline design**  
+- **Kubernetes** production deployment  
+- **Monitoring & observability**  
+- Real-world **troubleshooting & fixes**
+---
+
+## 📝 Notes
+
+- This project uses a **non-modular Terraform structure** for simplicity  
+- In production, the Terraform code can be **refactored into reusable modules**  
+- All commands are **tested on Ubuntu only**
+
+---
+
+## 👤 Author
+**Ghanashyama**  
+DevSecOps | Cloud | Kubernetes | CI/CD  
+📍 India  
+
+⭐ If you find this project useful, consider **starring the repository!**
