@@ -24,7 +24,7 @@ The pipeline provisions infrastructure using **Terraform**, builds and scans Doc
 
 ## 🏗️ Architecture
 
-![Architecture](screenshots/architecture.png)
+![Architecture](screenshots/architecture.jpg)
 
 **Core Components:**
 - AWS EKS (Kubernetes Cluster & Node Groups)
