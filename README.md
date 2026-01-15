@@ -12,7 +12,6 @@
 </div>
 
 ---
-# AWS DevSecOps CI/CD Pipeline with EKS, Jenkins & Kubernetes
 
 ## 📌 Project Overview
 
@@ -26,7 +25,7 @@ The pipeline provisions infrastructure using **Terraform**, builds and scans Doc
 
 ![Architecture](screenshots/architecture.jpg)
 
-**Core Components:**
+## **Core Components:**
 - AWS EKS (Kubernetes Cluster & Node Groups)
 - Terraform (Infrastructure as Code)
 - Jenkins (CI/CD Orchestration)
